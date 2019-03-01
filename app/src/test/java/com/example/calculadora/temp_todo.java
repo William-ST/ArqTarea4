@@ -15,7 +15,7 @@ import static junitparams.JUnitParamsRunner.$;
  * Created by William_ST on 28/02/19.
  */
 @RunWith(JUnitParamsRunner.class)
-public class MathCalculatorTest {
+public class temp_todo {
 
     private MathCalculator mathCalculator;
     private MathExpression mathExpression;
@@ -28,51 +28,49 @@ public class MathCalculatorTest {
         mathCalculator = new MathCalculator(mathExpression, mathOperation);
     }
 
-    @Parameters(method = "getDataContainsParenthesis")
+    @Parameters(method = "getDataReturnExpectedValueAddOperationIsUnaryOrBinary")
     @Test
-    public void containsParenthesisReturnExpectedValue(String expression) {
-        Truth.assertThat(mathCalculator.containsParenthesis(expression)).isTrue();
+    public void addSymbolShouldReturnExpectedValueWhenLastOperatorIsUnaryOrBinary(String to,
+                                                                                  String symbol, String expectedValue) {
+        Truth.assertThat(mathCalculator.addSymbol(to, symbol)).isEqualTo(expectedValue);
     }
 
-    private Object[] getDataContainsParenthesis() {
+    private Object[] getDataReturnExpectedValueAddOperationIsUnaryOrBinary() {
         return $(
-                $("(  2  +  2  )"),
-                $("( 5 * 2 )"),
-                $("(10 / 2)"),
-                $("(2^4)"),
-                $("(4-2)")
+                $("4  +  3  -", "+", "4  +  3 + "),
+                $("4  +  3  -", "^", "4  +  3 ^ "),
+                $("4  +  3  -", "f", "4  +  3 fact ("),
+                $("4  *", "/", "4* / ")
         );
     }
 
-    @Parameters(method = "getDataCleanParenthesisExpression")
+    @Parameters(method = "getDataReturnExpectedValueRemoveSymbol")
     @Test
-    public void getParenthesisExpressionReturnExpectedValue(String expression, String result) {
-        Truth.assertThat(mathCalculator.getParenthesisExpression(expression)).isEqualTo(result);
+    public void removeSymbolShouldReturnExpectedValue(String from, String result) {
+        Truth.assertThat(mathCalculator.removeSymbol(from)).isEqualTo(result);
     }
 
-    private Object[] getDataCleanParenthesisExpression() {
+    private Object[] getDataReturnExpectedValueRemoveSymbol() {
         return $(
-                $("(  2  +  2  )", "2  +  2"),
-                $("( 5 * 2 )", "5 * 2"),
-                $("(10 / 2)", "10 / 2"),
-                $("(2^4)", "2^4"),
-                $("(4-2)", "4-2")
+                $("4  +  3  -", "4 + 3"),
+                $("8  -  2  *", "8 - 2"),
+                $("4  +  3  fact (", "4 + 3 fact "),
+                $("4  *", "4")
         );
     }
 
-    @Parameters(method = "getDataReplaceParenthesis")
+    @Parameters(method = "getDataCalculateReturnExpectedValue")
     @Test
-    public void replaceParenthesisReturnExpectedValue(String from, String with, String result) {
-        Truth.assertThat(mathCalculator.replaceParenthesis(from, with)).isEqualTo(result);
+    public void calculateShouldReturnExptectedValue(String from, String result) {
+        Truth.assertThat(mathCalculator.calculate(from)).isEqualTo(result);
     }
 
-    private Object[] getDataReplaceParenthesis() {
+    private Object[] getDataCalculateReturnExpectedValue() {
         return $(
-                $("( 7 ) + ", "2", "2x + "),
-                $("( 4 + 5 ) ", "10", "10x "),
-                $("( 7 ) + 2", "20", "20x + 2"),
-                $("2 + ( 10 ) + 2", "20", "2 + x20x + 2"),
-                $("4 ( 7 )", "5", "4 x5")
+                $("4  +  3  -", "7"),
+                $("8  -  2  *", "6"),
+                $("4  +  3  fact (", "7"),
+                $("4  *", "4")
         );
     }
 

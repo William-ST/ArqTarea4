@@ -63,11 +63,12 @@ public class MathCalculator implements Calculator {
     }
 
     @VisibleForTesting
-    private boolean containsParenthesis(String expression) {
+    boolean containsParenthesis(String expression) {
         return expression.contains(PARENTHESIS_START);
     }
 
-    private String getParenthesisExpression(String from) {
+    @VisibleForTesting
+    String getParenthesisExpression(String from) {
         return removeParenthesis(getRightmostParenthesis(from));
     }
 
@@ -94,7 +95,8 @@ public class MathCalculator implements Calculator {
                 .replace(PARENTHESIS_END, EMPTY_STRING).trim();
     }
 
-    private String replaceParenthesis(String from, String with) {
+    @VisibleForTesting
+    String replaceParenthesis(String from, String with) {
         with = addOperators(from, with);
         return new StringBuilder(from)
                 .replace(getParenthesisStartIndex(from),
