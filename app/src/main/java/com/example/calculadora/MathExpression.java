@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
  */
 
 public class MathExpression implements Expression {
+
     static final String ADDITION = "+";
     static final String SUBTRACTION = "-";
     static final String MULTIPLICATION = "x";
@@ -30,8 +31,8 @@ public class MathExpression implements Expression {
     }
 
     @Override
-    public String addSymbol(@NonNull String expression,
-                            @NonNull String symbol) {
+    public String addSymbol(@NonNull String expression, @NonNull String symbol) throws ExpressionException {
+        throwsIfSymbolIsInvalid(symbol);
         return write(read(expression).concat(symbol));
     }
 
@@ -52,5 +53,19 @@ public class MathExpression implements Expression {
     @Override
     public String[] tokenize(@NonNull String expression) {
         return expression.split("(?<=[fr+x/^])|(?=[-fr+x/^])");
+    }
+
+    private void throwsIfSymbolIsInvalid(String expression)
+            throws ExpressionException {
+        for (char symbol : expression.toCharArray()) {
+            if (isSymbolInvalid(String.valueOf(symbol))) {
+                throw new ExpressionException(
+                        String.format("symbol %s is invalid", symbol));
+            }
+        }
+    }
+
+    private boolean isSymbolInvalid(String symbol) {
+        return !symbol.matches("([0-9]|[-+x/]|[.]|[()^fr])");
     }
 }

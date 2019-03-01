@@ -82,4 +82,20 @@ public class MathExpressionTest {
                 $("f(", "7", " fact (7"),
                 $("r(3x", "5", " sqrt (3 x 5"));
     }
+
+    @Parameters(method = "addInvalidSymbolInput")
+    @Test(expected = ExpressionException.class)
+    public void addSymbolShouldThrowWhenSymbolIsInvalid(String symbol) {
+        expression.addSymbol("", symbol);
+    }
+
+    private Object[] addInvalidSymbolInput() {
+        return $($("&"),
+                $("E"),
+                $("e"),
+                $("*"),
+                $("{"),
+                $("X"));
+    }
+
 }

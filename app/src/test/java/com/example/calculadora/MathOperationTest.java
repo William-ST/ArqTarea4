@@ -169,6 +169,5 @@ public class MathOperationTest {
                 $(-3, -1.2),  //Añade este elemento;
                 $( 0, 100000000),
                 $( 1, 100000000));
-        // TODO : QUE PASEN
     }
 }

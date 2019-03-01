@@ -1,5 +1,7 @@
 package com.example.calculadora;
 
+import android.util.Log;
+
 /**
  * Created by William_ST on 26/02/19.
  */
@@ -26,6 +28,12 @@ public class MathOperation {
         return operand1 / operand2;
     }
 
+    private void throwsIfExponentIsMaximumAllowedDouble(double exponent) {
+        if (exponent >= Double.MAX_EXPONENT) {
+            throw new OperationException();
+        }
+    }
+
     private void throwsIfValuesAreInvalid(double... values)
             throws OperationException {
         for (Double value : values) {
@@ -41,6 +49,7 @@ public class MathOperation {
     }
 
     public double exponentiation(double base, double exponent) throws OperationException {
+        throwsIfExponentIsMaximumAllowedDouble(exponent);
         double result = 1;
         boolean expoNegative = exponent < 0;
         if (expoNegative)
@@ -48,8 +57,8 @@ public class MathOperation {
         while (exponent != 0) {
             result = multiplication(result, base);
             exponent--;
+            throwsIfValuesAreInvalid(result);
         }
-
         return expoNegative ? (1 / result) : result;
     }
 
