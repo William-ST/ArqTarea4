@@ -52,8 +52,7 @@ public class MathCalculator implements Calculator {
     }
 
     @Override
-    public String calculate(@NonNull String from) throws
-            OperationException, ExpressionException {
+    public String calculate(@NonNull String from) throws OperationException, ExpressionException {
         from = expression.read(from);
         while (containsParenthesis(from)) {
             String parenthesis = getParenthesisExpression(from);
@@ -135,38 +134,43 @@ public class MathCalculator implements Calculator {
 
     @VisibleForTesting
     String resolve(String from) throws OperationException, ExpressionException {
-        if (from.isEmpty()) return "";
+        if(from.isEmpty()) return "";
+
         double result = 0;
         String unaryOperator = NONE;
         String binaryOperator = NONE;
-        String[] symbols = expression.tokenize(from);
-        for (
-                String symbol : symbols)
 
-        {
+        String[] symbols = expression.tokenize(from);
+
+        for (String symbol : symbols) {
             if (symbol.isEmpty()) continue;
+
             if (isAnUnaryOperator(symbol)) {
                 unaryOperator = symbol;
                 if (binaryOperator.equals(NONE) && result != 0)
                     binaryOperator = MULTIPLICATION;
+
             } else if (isABinaryOperator(symbol)) {
                 binaryOperator = symbol;
+
             } else {
-                if (unaryOperator.equals(NONE) && binaryOperator.equals(NONE))
+                if(unaryOperator.equals(NONE) && binaryOperator.equals(NONE))
                     result = operation.addition(result, Double.parseDouble(symbol));
+
                 if (!unaryOperator.equals(NONE)) {
                     symbol = String.valueOf(calculateUnaryOperation(Double.parseDouble(symbol), unaryOperator));
                     result = binaryOperator.equals(NONE) ? Double.parseDouble(symbol) : result;
                     unaryOperator = NONE;
                 }
-                if (!binaryOperator.equals(NONE)) {
+
+                if(!binaryOperator.equals(NONE)) {
                     result = calculateBinaryOperation(result, Double.parseDouble(symbol), binaryOperator);
                     binaryOperator = NONE;
                 }
             }
         }
-        return getFormattedNumber(result);
 
+        return getFormattedNumber(result);
     }
 
     @VisibleForTesting

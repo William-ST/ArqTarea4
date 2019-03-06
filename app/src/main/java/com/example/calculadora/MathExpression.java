@@ -41,7 +41,8 @@ public class MathExpression implements Expression {
         expression = read(expression);
         int START_INDEX = 0;
         int END_INDEX = expression.length() - 1;
-        return write(expression.substring(START_INDEX, END_INDEX));
+        //return write(expression.substring(START_INDEX, END_INDEX));
+        return expression.isEmpty() ? expression : write(expression.substring(START_INDEX, END_INDEX));
     }
 
     @Override

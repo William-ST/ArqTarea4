@@ -47,7 +47,15 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Anim
         clearButton = findViewById(R.id.bt_clear);
         removeLastButton = findViewById(R.id.bt_remove_last);
         equalButton = findViewById(R.id.bt_equal);
-        buttons = Arrays.asList(findViewById(R.id.bt_parenthesis_start), findViewById(R.id.bt_parenthesis_end), findViewById(R.id.bt_addition), findViewById(R.id.bt_subtraction), findViewById(R.id.bt_multiplication), findViewById(R.id.bt_division), findViewById(R.id.bt_exponentiation), findViewById(R.id.bt_square_root), findViewById(R.id.bt_factorial), findViewById(R.id.bt0), findViewById(R.id.bt00), findViewById(R.id.bt1), findViewById(R.id.bt2), findViewById(R.id.bt3), findViewById(R.id.bt4), findViewById(R.id.bt5), findViewById(R.id.bt6), findViewById(R.id.bt7), findViewById(R.id.bt8), findViewById(R.id.bt9), findViewBy - Id(R.id.bt_dot));
+        buttons = Arrays.asList((Button) findViewById(R.id.bt_parenthesis_start),
+                (Button) findViewById(R.id.bt_parenthesis_end), (Button) findViewById(R.id.bt_addition),
+                (Button) findViewById(R.id.bt_subtraction), (Button) findViewById(R.id.bt_multiplication),
+                (Button) findViewById(R.id.bt_division), (Button) findViewById(R.id.bt_exponentiation),
+                (Button) findViewById(R.id.bt_square_root), (Button) findViewById(R.id.bt_factorial),
+                (Button) findViewById(R.id.bt0), (Button) findViewById(R.id.bt00), (Button) findViewById(R.id.bt1),
+                (Button) findViewById(R.id.bt2), (Button) findViewById(R.id.bt3), (Button) findViewById(R.id.bt4),
+                (Button) findViewById(R.id.bt5), (Button) findViewById(R.id.bt6), (Button) findViewById(R.id.bt7),
+                (Button) findViewById(R.id.bt8), (Button) findViewById(R.id.bt9), (Button) findViewById(R.id.bt_dot));
         setPresenter(new CalculatorPresenterImp(this, new MathCalculator(new MathExpression(), new MathOperation())));
     }
 
@@ -158,8 +166,8 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Anim
 
     @Override
     public void showResult(String result) {
-        ((TextView) resultText.getCurrentView())
-                .setTextColor(Color.rgb(150, 150, 150); resultText.setCurrentText(result);
+        ((TextView) resultText.getCurrentView()).setTextColor(Color.rgb(150, 150, 150));
+        resultText.setCurrentText(result);
     }
 
     @Override
@@ -167,4 +175,4 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Anim
         resultText.setText("ERROR");
         ((TextView) resultText.getCurrentView()).setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
     }
-}}
+}
