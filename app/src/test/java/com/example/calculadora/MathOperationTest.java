@@ -26,6 +26,18 @@ public class MathOperationTest {
         mathOperation = new MathOperation();
     }
 
+    @Test
+    public void additionShouldReturnTenWhenOperandsAreThreeAndSeven() { //method replaced
+        //Arrange
+        MathOperation operation = new MathOperation();
+        double expectedValue = 10;
+        double result = 0;
+        //Act
+        result = operation.addition(3, 7);
+        //Assert
+        assertEquals(String.format("Resultado %1s ha de ser igual a %2s", result, expectedValue), expectedValue, result, 0.0);
+    }
+
     @Parameters(method = "getValidAdditionInput")
     @Test
     public void additionShouldReturnExpectedValueWhenOperandsAreRealNumbers
@@ -56,7 +68,8 @@ public class MathOperationTest {
         return new Object[]{
                 new Object[]{12, Double.MAX_VALUE},
                 new Object[]{Double.POSITIVE_INFINITY, 1},
-                new Object[]{-12.3, Double.NEGATIVE_INFINITY}, new Object[]{Double.NaN, 12},
+                new Object[]{-12.3, Double.NEGATIVE_INFINITY},
+                new Object[]{Double.NaN, 12},
                 new Object[]{Math.pow(2, 1024), -1}
         };
     }
@@ -68,11 +81,12 @@ public class MathOperationTest {
         // ACT
         double result = mathOperation.substraction(operand1, operand2);
         //ASSERT
-        assertEquals(String.format("Resultado %1s ha de ser igual a %2s", result, expectedValue), expectedValue, result, 0.0);
+        assertEquals(String.format("Resultado %1s ha de ser igual a %2s", result, expectedValue), expectedValue, result, 1E-15);
     }
 
     private Object[] getValidSubstractionInput() {
         return new Object[]{
+                new Object[]{-3.5, -2.7, -0.8},
                 new Object[]{10, 4, 6},
                 new Object[]{-10, 5, -15},
                 new Object[]{-3.5, 2.5, -6}};
@@ -92,7 +106,9 @@ public class MathOperationTest {
         return new Object[]{
                 new Object[]{2, 9, 18},
                 new Object[]{-1, 20, -20},
-                new Object[]{-5, 2.5, -12.5}};
+                new Object[]{-5, 2.5, -12.5},
+                new Object[]{-3.5, 2.5, -8.75}
+        };
     }
 
     @Parameters(method = "getValidDivisionInput")
@@ -109,7 +125,9 @@ public class MathOperationTest {
         return new Object[]{
                 new Object[]{10, 2, 5.0},
                 new Object[]{45, 5, 9.0},
-                new Object[]{-100, 25, -4.0}};
+                new Object[]{-100, 25, -4.0},
+                new Object[]{-3.5, 2.5, -1.4}
+        };
     }
 
     @Parameters(method = "getValidDivisionInvalidInput")
@@ -134,7 +152,7 @@ public class MathOperationTest {
     public void exponentiationShouldReturnExpectedValueWhenInputAreIntegers(double base, double exponent, double expectedValue) {
 
         double result = mathOperation.exponentiation(base, exponent);
-        Truth.assertThat(result).isWithin(0.00000000001).of(expectedValue);
+        Truth.assertThat(result).isWithin(1E-10).of(expectedValue);
         //assertThat(result, equalTo(expectedValue));
     }
 
@@ -167,7 +185,7 @@ public class MathOperationTest {
                 $(2, 1024),
                 $(5, 3.3),     //Añade este elemento
                 $(-3, -1.2),  //Añade este elemento;
-                $( 0, 100000000),
-                $( 1, 100000000));
+                $(0, 100000000),
+                $(1, 100000000));
     }
 }
