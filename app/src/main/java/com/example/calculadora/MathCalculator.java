@@ -37,8 +37,7 @@ public class MathCalculator implements Calculator {
     @Override
     public String addSymbol(@NonNull String to, @NonNull String symbol) {
         if (isAnOperator(symbol)) {
-            symbol = isAnUnaryOperator(symbol) ?
-                    symbol.concat(PARENTHESIS_START) : symbol;
+            symbol = isAnUnaryOperator(symbol) ? symbol.concat(PARENTHESIS_START) : symbol;
             if (endsWithOperator(to)) {
                 return expression.replaceSymbol(to, symbol);
             }

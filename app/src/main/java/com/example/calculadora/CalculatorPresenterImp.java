@@ -40,7 +40,7 @@ public class CalculatorPresenterImp implements CalculatorPresenter {
         }
         try {
             view.showResult(calculator.calculate(expression));
-        } catch (OperationException | ExpressionException exception) {
+        } catch (RuntimeException e) {
             view.showError();
         }
     }

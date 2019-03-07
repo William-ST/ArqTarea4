@@ -21,7 +21,8 @@ public class MathExpression implements Expression {
     @Override
     public String read(@NonNull String expression) {
         return expression.replace(SQUARE_ROOT_SCREEN, SQUARE_ROOT)
-                .replace(FACTORIAL_SCREEN, FACTORIAL).replaceAll("\\s", "");
+                .replace(FACTORIAL_SCREEN, FACTORIAL)
+                .replaceAll("\\s", "");
     }
 
     @Override
@@ -47,7 +48,10 @@ public class MathExpression implements Expression {
 
     @Override
     public String replaceSymbol(@NonNull String expression, @NonNull String symbol) {
-        expression = removeSymbol(expression);
+        if (expression.length() > 1) {
+            expression = removeSymbol(expression);
+            return write(expression.concat(symbol));
+        }
         return write(expression.concat(symbol));
     }
 
