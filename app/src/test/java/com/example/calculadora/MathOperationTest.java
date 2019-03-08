@@ -40,8 +40,7 @@ public class MathOperationTest {
 
     @Parameters(method = "getValidAdditionInput")
     @Test
-    public void additionShouldReturnExpectedValueWhenOperandsAreRealNumbers
-            (double operand1, double operand2, double expectedValue) {
+    public void additionShouldReturnExpectedValueWhenOperandsAreRealNumbers(double operand1, double operand2, double expectedValue) {
         // ARRANGE
         // ACT
         double result = mathOperation.addition(operand1, operand2);
@@ -188,4 +187,34 @@ public class MathOperationTest {
                 $(0, 100000000),
                 $(1, 100000000));
     }
+
+    @Parameters(method = "getInvalidSquareRootInput")
+    @Test(expected = OperationException.class, timeout = 100)
+    public void squareRootShouldThrowWhenInputIsInvalid(double radicand) {
+        mathOperation.squareRoot(radicand);
+    }
+
+    private Object[] getInvalidSquareRootInput() {
+        return $(
+                $(Double.NEGATIVE_INFINITY),
+                $(Double.POSITIVE_INFINITY),
+                $(Double.NaN),
+                $(Double.MAX_VALUE));
+    }
+
+    @Parameters(method = "getInvalidFactorialInput")
+    @Test(expected = OperationException.class, timeout = 100)
+    public void factorialShouldThrowWhenInputIsInvalid(double factorial) {
+        mathOperation.factorial(factorial);
+    }
+
+    private Object[] getInvalidFactorialInput() {
+        return $(
+                $(Double.NEGATIVE_INFINITY),
+                $(Double.POSITIVE_INFINITY),
+                $(Double.NaN),
+                $(Double.MAX_VALUE),
+                $(1024));
+    }
+
 }

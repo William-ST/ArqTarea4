@@ -4,8 +4,8 @@
 (X) Práctica: Añadir métodos a MathOperation
 (X) Ejercicio: Completar la clase MathOperation
 (X) Ejercicio: Refactorizar el método exponentation
-(-) Práctica: Refactorizar squareRoot() y factorial()
-(_) Ejercicio: Crear la clase MathExpression
+(X) Práctica: Refactorizar squareRoot() y factorial()
+(-) Ejercicio: Crear la clase MathExpression
 (_) Ejercicio: Crear una Suite
 (_) Ejercicio: Crear la clase MathCalculator
 (_) Práctica: Realizar un test para MathCalculator

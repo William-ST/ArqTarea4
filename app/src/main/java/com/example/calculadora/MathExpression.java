@@ -1,6 +1,7 @@
 package com.example.calculadora;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 /**
  * Created by William_ST on 27/02/19.
@@ -37,6 +38,7 @@ public class MathExpression implements Expression {
         return write(read(expression).concat(symbol));
     }
 
+    // TODO : WORKING HERE!
     @Override
     public String removeSymbol(@NonNull String expression) {
         expression = read(expression);
@@ -60,8 +62,8 @@ public class MathExpression implements Expression {
         return expression.split("(?<=[fr+x/^])|(?=[-fr+x/^])");
     }
 
-    private void throwsIfSymbolIsInvalid(String expression)
-            throws ExpressionException {
+    private void throwsIfSymbolIsInvalid(String expression) throws ExpressionException {
+        if (TextUtils.isEmpty(expression)) throw new ExpressionException(String.format("expression %s is null/empty", expression));
         for (char symbol : expression.toCharArray()) {
             if (isSymbolInvalid(String.valueOf(symbol))) {
                 throw new ExpressionException(

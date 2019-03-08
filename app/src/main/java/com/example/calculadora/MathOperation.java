@@ -2,6 +2,8 @@ package com.example.calculadora;
 
 import android.util.Log;
 
+import javax.xml.validation.Validator;
+
 /**
  * Created by William_ST on 26/02/19.
  */
@@ -62,20 +64,32 @@ public class MathOperation {
         return expoNegative ? (1 / result) : result;
     }
 
-    public double squareRoot(double radicand) {
+    public void validLimitProcess(double value) throws OperationException {
+        if (value >= Double.MAX_VALUE) throw new OperationException();
+    }
+
+    public double squareRoot(double radicand) throws OperationException {
+        validLimitProcess(radicand);
+        throwsIfValuesAreInvalid(radicand);
         double aux;
         double squareRoot = radicand / 2;
         do {
             aux = squareRoot;
             squareRoot = (aux + (radicand / aux)) / 2;
+            validLimitProcess(squareRoot);
+            throwsIfValuesAreInvalid(squareRoot);
         } while (aux != squareRoot);
         return squareRoot;
     }
 
-    public double factorial(double operand) {
+    public double factorial(double operand) throws OperationException{
+        validLimitProcess(operand);
+        throwsIfValuesAreInvalid(operand);
         double result = 1;
         while (operand > 0) {
             result *= operand;
+            validLimitProcess(result);
+            throwsIfValuesAreInvalid(result);
             operand--;
         }
         return result;
