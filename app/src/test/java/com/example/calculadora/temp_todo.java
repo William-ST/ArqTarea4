@@ -59,12 +59,6 @@ public class temp_todo {
         );
     }
 
-    @Parameters(method = "getDataCalculateReturnExpectedValue")
-    @Test
-    public void calculateShouldReturnExptectedValue(String from, String result) {
-        Truth.assertThat(mathCalculator.calculate(from)).isEqualTo(result);
-    }
-
     private Object[] getDataCalculateReturnExpectedValue() {
         return $(
                 $("4  +  3  -", "7"),
