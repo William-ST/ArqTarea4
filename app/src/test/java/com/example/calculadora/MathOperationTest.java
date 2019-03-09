@@ -33,7 +33,7 @@ public class MathOperationTest {
         double expectedValue = 10;
         double result = 0;
         //Act
-        result = operation.addition(3, 7);
+        result = operation.addition(3d, 7d);
         //Assert
         assertEquals(String.format("Resultado %1s ha de ser igual a %2s", result, expectedValue), expectedValue, result, 0.0);
     }
@@ -215,6 +215,20 @@ public class MathOperationTest {
                 $(Double.NaN),
                 $(Double.MAX_VALUE),
                 $(1024));
+    }
+
+    @Parameters(method = "getNullInput")
+    @Test(expected = OperationException.class)
+    public void additionShouldThrowWhenValuesAreNull(Double operant1, Double operant2) {
+        mathOperation.addition(operant1, operant2);
+    }
+
+    private Object[] getNullInput() {
+        return new Object[]{
+                new Object[]{null, 5.0},
+                new Object[]{null, null},
+                new Object[]{10.0, null}
+        };
     }
 
 }

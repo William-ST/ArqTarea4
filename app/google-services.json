@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "741391903615",
+    "firebase_url": "https://calculadora-3c053.firebaseio.com",
+    "project_id": "calculadora-3c053",
+    "storage_bucket": "calculadora-3c053.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741391903615:android:5c7c47fd6bdac36f",
+        "android_client_info": {
+          "package_name": "com.example.calculadora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "741391903615-8d6o1nhqi62e5sn4o32ct637ihc56uv6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.calculadora",
+            "certificate_hash": "f32fb9faef67c46898fafcf60f675d6b40858535"
+          }
+        },
+        {
+          "client_id": "741391903615-3ajutjql9fh1561pnapne9tjo4nlsmod.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCvlpA2mG7G8RL4hdXracwumiDapykaok"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "741391903615-3ajutjql9fh1561pnapne9tjo4nlsmod.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

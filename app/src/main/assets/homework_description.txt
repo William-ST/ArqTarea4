@@ -18,5 +18,9 @@
 (X) Ejercicio: Refactorizar MainActivityTest para usar JUnitParams
 (X) Ejercicio: Crear un ViewAction personalizado
 (X) Práctica: Realizar los test de removeLastButton y clearButton
-(_) Ejercicio: Ejecutar test de instrumentación con Firebase Test Lab
-(_) Ejercicio: Test de instrumentación con Robo Test
+(X) Ejercicio: Ejecutar test de instrumentación con Firebase Test Lab
+(X) Ejercicio: Test de instrumentación con Robo Test
+Extras:
+(X) Práctica: Refactorizar los métodos de la clase MathOperation para evitar un NullPointerException en tiempo de ejecución como consecuencia del Autoboxing (ver explicación en el vídeo de repaso desde 1:04:55)
+(X) Práctica: Refactorizar los métodos removeSymbol(), replaceSymbol y tokenize()
+(_) Práctica: Completar los test de MathCalculator usando Mockito //Solo un par

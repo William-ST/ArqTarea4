@@ -10,7 +10,7 @@ import javax.xml.validation.Validator;
 
 public class MathOperation {
 
-    public double addition(double operand1, double operand2) throws OperationException {
+    public double addition(Double operand1, Double operand2) throws OperationException {
         throwsIfValuesAreInvalid(operand1, operand2);
         return operand1 + operand2;
     }
@@ -36,10 +36,10 @@ public class MathOperation {
         }
     }
 
-    private void throwsIfValuesAreInvalid(double... values)
-            throws OperationException {
+    private void throwsIfValuesAreInvalid(Double... values) throws OperationException {
+        if (values == null) throw new OperationException();
         for (Double value : values) {
-            if (value == Double.MAX_VALUE || Double.isInfinite(value) || Double.isNaN(value))
+            if (value == null || value == Double.MAX_VALUE || Double.isInfinite(value) || Double.isNaN(value))
                 throw new OperationException();
         }
     }
