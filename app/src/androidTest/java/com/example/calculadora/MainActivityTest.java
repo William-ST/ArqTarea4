@@ -40,7 +40,7 @@ public class MainActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
-/*
+
     @Test
     @Parameters(method = "getValidOperandButtonData")
     public void onClickButtonShouldAddExpectedValueToOperationsViews(int buttonId, String expectedValue) {
@@ -90,6 +90,7 @@ public class MainActivityTest {
                 new Object[]{"2+2", "4"},
                 new Object[]{"sqrt(9)", "3"},
                 new Object[]{"5/2", "2.5"},
+                new Object[] {"3+(4x3)", "15"},
                 new Object[]{"(4/4)", "1"},
                 new Object[]{"100-90", "10"},
                 new Object[]{"10x20", "200"},
@@ -117,28 +118,12 @@ public class MainActivityTest {
         };
     }
 
-    */
-
     @Test
-    @Parameters(method = "getValidOperationsClearButtonData")
-    public void onOperationsViewShouldRemoveLastButtonView(String operations, String result) {
-        onView(withId(R.id.operations)).perform(setText(operations));
+    public void onOperationsViewShouldClearButtonView() {
+        onView(withId(R.id.operations)).perform(setText("2+2"));
         onView(withId(R.id.bt_clear)).perform(click());
-        onView(allOf(withParent(withId(R.id.result)), isCompletelyDisplayed())).check(matches(withText(result)));
+        onView(allOf(withParent(withId(R.id.result)), isCompletelyDisplayed())).check(matches(withText("")));
     }
-
-    private static Object[] getValidOperationsClearButtonData() {
-        return new Object[]{
-                new Object[]{"5/2", ""},
-                new Object[]{"(4/4)", ""},
-                new Object[]{"100-90", ""},
-                new Object[]{"10x20", ""},
-                new Object[]{"8^2", ""},
-                new Object[]{"9+2", ""}
-        };
-    }
-
-
 
     public static ViewAction setText(final String value) {
         return new ViewAction() {
@@ -158,49 +143,6 @@ public class MainActivityTest {
                 return "replace text";
             }
         };
-    }
-
-    public static ViewAction waitId(final int viewId, final long millis) {
-        return new ViewAction() {
-            @Override
-            public Matcher<View> getConstraints() {
-                return isRoot();
-            }
-
-            @Override
-            public String getDescription() {
-                return "wait for a specific view with id <" + viewId + "> during " + millis + " millis.";
-            }
-
-            @Override
-            public void perform(final UiController uiController, final View view) {
-                uiController.loopMainThreadUntilIdle();
-                final long startTime = System.currentTimeMillis();
-                final long endTime = startTime + millis;
-                final Matcher<View> viewMatcher = withId(viewId);
-
-                do {
-                    for (View child : TreeIterables.breadthFirstViewTraversal(view)) {
-                        // found view with required ID
-                        if (viewMatcher.matches(child)) {
-                            return;
-                        }
-                    }
-
-                    uiController.loopMainThreadForAtLeast(50);
-                }
-                while (System.currentTimeMillis() < endTime);
-
-                // timeout happens
-                throw new PerformException.Builder()
-                        .withActionDescription(this.getDescription())
-                        .withViewDescription(HumanReadables.describe(view))
-                        .withCause(new TimeoutException())
-                        .build();
-            }
-        };
-
-
     }
 
 }

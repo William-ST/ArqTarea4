@@ -1,5 +1,7 @@
 package com.example.calculadora;
 
+import android.text.TextUtils;
+
 /**
  * Created by everis on 1/03/19.
  */
@@ -24,6 +26,10 @@ public class CalculatorPresenterImp implements CalculatorPresenter {
 
     @Override
     public void removeSymbol(String expression) {
+        if (expression == null) {
+            view.showError();
+            return;
+        }
         view.showOperations(calculator.removeSymbol(expression));
     }
 
@@ -34,8 +40,8 @@ public class CalculatorPresenterImp implements CalculatorPresenter {
 
     @Override
     public void calculate(String expression) {
-        if (expression.isEmpty()) {
-            view.showResult(expression);
+        if (expression == null) {
+            view.showError();
             return;
         }
         try {

@@ -5,18 +5,18 @@
 (X) Ejercicio: Completar la clase MathOperation
 (X) Ejercicio: Refactorizar el método exponentation
 (X) Práctica: Refactorizar squareRoot() y factorial()
-(-) Ejercicio: Crear la clase MathExpression
-(_) Ejercicio: Crear una Suite
-(_) Ejercicio: Crear la clase MathCalculator
-(_) Práctica: Realizar un test para MathCalculator
-(_) Ejercicio: Crear un mock
-(_) Ejercicio: Crear un test doble con Mockito
-(_) Ejercicio: Crear la clase CalculatorPresenterImp
-(_) Práctica: Completar los test de CalculatorPresenterImp
-(_) Ejercicio: Crear la interfaz de usuario de la Calculadora
-(_) Ejercicio: Crear un test de IU con Espresso
-(_) Ejercicio: Refactorizar MainActivityTest para usar JUnitParams
-(_) Ejercicio: Crear un ViewAction personalizado
-(_) Práctica: Realizar los test de removeLastButton y clearButton
+(X) Ejercicio: Crear la clase MathExpression
+(X) Ejercicio: Crear una Suite
+(X) Ejercicio: Crear la clase MathCalculator
+(X) Práctica: Realizar un test para MathCalculator
+(X) Ejercicio: Crear un mock
+(X) Ejercicio: Crear un test doble con Mockito
+(X) Ejercicio: Crear la clase CalculatorPresenterImp
+(X) Práctica: Completar los test de CalculatorPresenterImp
+(X) Ejercicio: Crear la interfaz de usuario de la Calculadora
+(X) Ejercicio: Crear un test de IU con Espresso
+(X) Ejercicio: Refactorizar MainActivityTest para usar JUnitParams
+(X) Ejercicio: Crear un ViewAction personalizado
+(X) Práctica: Realizar los test de removeLastButton y clearButton
 (_) Ejercicio: Ejecutar test de instrumentación con Firebase Test Lab
 (_) Ejercicio: Test de instrumentación con Robo Test

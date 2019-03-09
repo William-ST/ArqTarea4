@@ -1,5 +1,7 @@
 package com.example.calculadora;
 
+import com.google.common.truth.Truth;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,8 +68,7 @@ public class MathExpressionTest {
 
     @Parameters(method = "addSymbolExpressionData")
     @Test
-    public void addSymbolShouldReturnExpectedExpression(
-            String original, String symbol, String expected) {
+    public void addSymbolShouldReturnExpectedExpression(String original, String symbol, String expected) {
         String result = expression.addSymbol(original, symbol);
         assertThat(result).isEqualTo(expected);
     }
@@ -96,6 +97,30 @@ public class MathExpressionTest {
                 $("*"),
                 $("{"),
                 $("X"));
+    }
+
+    @Test(expected = ExpressionException.class)
+    public void removeSymbolShouldThrowWhenSymbolIsInvalid() {
+        expression.removeSymbol(null);
+    }
+
+    @Parameters(method = "replaceSymbolInput")
+    @Test(expected = ExpressionException.class)
+    public void replaceSymbolShouldThrowWhenSymbolIsInvalid(String currentExpression, String newSymbol) {
+        expression.replaceSymbol(currentExpression, newSymbol);
+    }
+
+    private Object[] replaceSymbolInput() {
+        return $(
+                $(null, ""),
+                $("", null),
+                $(null, null)
+        );
+    }
+
+    @Test(expected = ExpressionException.class)
+    public void tokenizeSymbolShouldThrowWhenSymbolIsInvalid() {
+        expression.tokenize(null);
     }
 
 }

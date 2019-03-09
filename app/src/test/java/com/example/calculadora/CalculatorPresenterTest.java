@@ -52,4 +52,54 @@ public class CalculatorPresenterTest {
         verify(mockedView, times(0)).showOperations(anyString());
         verify(mockedView, times(1)).showError();
     }
+
+    @Test
+    public void removeSymbolShouldCallShowOperationsWhenInputIsValid() {
+        when(mockedCalculator.removeSymbol(anyString())).thenReturn("");
+        presenter.removeSymbol(anyString());
+        verify(mockedView, times(1)).showOperations("");
+        verify(mockedView, times(0)).showError();
+    }
+
+    @Test
+    public void removeSymbolShouldCallErrorWhenCalculatorThrowsAnNullParamException() {
+        when(mockedCalculator.removeSymbol(null)).thenReturn("");
+        presenter.removeSymbol(null);
+        verify(mockedView, times(0)).showOperations(anyString());
+        verify(mockedView, times(1)).showError();
+    }
+
+    @Test
+    public void cleanScreenShouldCallShowOperationsWhenInputIsValid() {
+        presenter.clearScreen();
+        verify(mockedView, times(1)).showOperations("");
+    }
+
+    @Test
+    public void calculateShouldCallShowResultWhenInputIsValid() {
+        when(mockedCalculator.calculate(anyString())).thenReturn("");
+        presenter.calculate(anyString());
+        verify(mockedView, times(1)).showResult(anyString());
+        verify(mockedView, times(0)).showError();
+        verify(mockedView, times(0)).showOperations(anyString());
+    }
+
+    @Test
+    public void calculateShouldCallShowErrorWhenInputIsInvalid() {
+        presenter.calculate(null);
+        verify(mockedView, times(0)).showResult(anyString());
+        verify(mockedView, times(1)).showError();
+        verify(mockedView, times(0)).showOperations(anyString());
+    }
+
+    @Test
+    public void calculateShouldCallShowErrorWhenRuntimeException() {
+        when(mockedCalculator.calculate(anyString())).thenReturn("");
+        presenter.calculate(null);
+        verify(mockedView, times(0)).showResult(anyString());
+        verify(mockedView, times(1)).showError();
+        verify(mockedView, times(0)).showOperations(anyString());
+    }
+
+
 }

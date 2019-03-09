@@ -20,7 +20,7 @@ public class MathExpression implements Expression {
     static final String FACTORIAL_SCREEN = "fact";
 
     @Override
-    public String read(@NonNull String expression) {
+    public String read(@NonNull String expression) throws ExpressionException {
         return expression.replace(SQUARE_ROOT_SCREEN, SQUARE_ROOT)
                 .replace(FACTORIAL_SCREEN, FACTORIAL)
                 .replaceAll("\\s", "");
@@ -38,18 +38,18 @@ public class MathExpression implements Expression {
         return write(read(expression).concat(symbol));
     }
 
-    // TODO : WORKING HERE!
     @Override
-    public String removeSymbol(@NonNull String expression) {
+    public String removeSymbol(String expression) throws ExpressionException {
+        if (expression == null) throw new ExpressionException();
         expression = read(expression);
         int START_INDEX = 0;
         int END_INDEX = expression.length() - 1;
-        //return write(expression.substring(START_INDEX, END_INDEX));
         return expression.isEmpty() ? expression : write(expression.substring(START_INDEX, END_INDEX));
     }
 
     @Override
-    public String replaceSymbol(@NonNull String expression, @NonNull String symbol) {
+    public String replaceSymbol(String expression, String symbol) throws ExpressionException {
+        if (expression == null || symbol == null) throw new ExpressionException();
         if (expression.length() > 1) {
             expression = removeSymbol(expression);
             return write(expression.concat(symbol));
@@ -58,12 +58,15 @@ public class MathExpression implements Expression {
     }
 
     @Override
-    public String[] tokenize(@NonNull String expression) {
+    public String[] tokenize(String expression) {
+        if (expression == null) throw new ExpressionException();
         return expression.split("(?<=[fr+x/^])|(?=[-fr+x/^])");
     }
 
     private void throwsIfSymbolIsInvalid(String expression) throws ExpressionException {
-        if (TextUtils.isEmpty(expression)) throw new ExpressionException(String.format("expression %s is null/empty", expression));
+        if (expression == null) {
+            throw new ExpressionException(String.format("expression %s is null/empty", expression));
+        }
         for (char symbol : expression.toCharArray()) {
             if (isSymbolInvalid(String.valueOf(symbol))) {
                 throw new ExpressionException(
